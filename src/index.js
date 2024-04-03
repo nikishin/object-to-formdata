@@ -48,6 +48,7 @@ function serialize(obj, cfg, fd, pre) {
   fd = fd || new FormData();
 
   cfg.indices = initCfg(cfg.indices);
+  cfg.dotsForArrayNotation = initCfg(cfg.dotsForArrayNotation);
   cfg.nullsAsUndefineds = initCfg(cfg.nullsAsUndefineds);
   cfg.booleansAsIntegers = initCfg(cfg.booleansAsIntegers);
   cfg.allowEmptyArrays = initCfg(cfg.allowEmptyArrays);
@@ -74,7 +75,7 @@ function serialize(obj, cfg, fd, pre) {
   } else if (isArray(obj)) {
     if (obj.length) {
       obj.forEach((value, index) => {
-        let key = pre + '[' + (cfg.indices ? index : '') + ']';
+        let key = pre + (cfg.dotsForArrayNotation ? '.' + index : '[' + (cfg.indices ? index : '') + ']');
 
         if (
           cfg.noAttributesWithArrayNotation ||
