@@ -87,7 +87,7 @@ function serialize(obj, cfg, fd, pre) {
         serialize(value, cfg, fd, key);
       });
     } else if (cfg.allowEmptyArrays) {
-      fd.append(cfg.noAttributesWithArrayNotation ? pre : pre + '[]', '');
+      fd.append(cfg.noAttributesWithArrayNotation ? pre : pre + '[]', null);
     }
   } else if (isDate(obj)) {
     fd.append(pre, obj.toISOString());
